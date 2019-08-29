@@ -35,7 +35,7 @@ vertx {
 - (3) the default verticle to run defined as a `vertx` plugin [property](https://github.com/jponge/vertx-gradle-plugin#using-kotlin-dsl)
 
 #### Verticle body
-Basic verticle barely have any extra code. It is just opens web-server and responds with default
+Basic verticle barely have any extra code. It just opens web-server and responds with default
 answer to queries ([full code here](./src/main/java/io/bearmug/vertx/SimpleVerticle.java)):
 ```java
 public class SimpleVerticle extends AbstractVerticle { // 1
@@ -91,8 +91,7 @@ As an extra step we may configure enhanced log message template or alter log out
 with simplest config file [here](./src/main/resources/log4j2.xml).
 
 ### Plugin #3. Configure native image build with GraalVM
-Vertx app starts quite fast. But sometimes it is not quite enough. At this case we may try to transform it
-to native image directly and start it as regular executable file. Again, in Gradle ecosystem it is could be
+Vertx app starts quite fast. But we can do it even better with native code. Again, in Gradle ecosystem it is could be
 done with single [GraalVM plugin](https://plugins.gradle.org/plugin/com.palantir.graal) import:
 ```kotlin
 plugins {
@@ -106,7 +105,7 @@ graal { // native image customization
 }
 ```
 
-Now the only extra is `main` method population:
+Now the only extra is `main` method population (GraalVM plugin is unaware about `mainVerticle` config):
 ```java
 public class SimpleVerticle extends AbstractVerticle {
     public static void main(String[] args) {
